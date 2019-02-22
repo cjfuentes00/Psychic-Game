@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+<h1>The Psychic Game</h1>
+
+<body>
+
+<div>
+    <p id="directions-text">Guess what letter I'm thinking of</p>
+    <p>Wins: </p><span id="wins-text"></span>
+    <p>Losses: </p><span id="losses-text"></span>
+    <p>Guesses Left: </p><span id="guessesLeft-text"></span>
+    <p>Your Guesses so Far: </p><span id="guessedLetters-text"></span>
+</div>
+ 
+<script>  
+
+var letters = ["a", "b", "c"];
+var guessedLetters = [];
+var guessesLeft = 9;
+var wins = 0;
+var losses = 0;
+// variable randomly assigned one of the three "letters"
+var computerGuess = null;
+
+// Functions
+
+var guessesLeftCount = function() {
+    document.getElementById("guessesLeft-text").innerHTML = guessesLeft;
+    };
+
+var computerGuessRandom = function() {
+    computerGuess = letters[Math.floor(Math.random() * letters.length)];
+};
+
+var guessedLettersDispplay = function() {
+    document.getElementById("guessesLetters-text").innerHTML = guessedLetters.join(",");
+};
+
+// Function to reset
+
+var reset = function() {
+    guessesLeft = 9;
+    guessedLetters = [];
+    computerGuessRandom();
+    guessedLetterDisplay();
+};
+
+
+// Variables that reference IDs to dsiplay text
+
+// var directionsText = document.getElementById("directions-text");
+// var winsText = document.getElementById("wins-text");
+// var lossesText = document.getElementById("losses-text");
+// var guessesLeftText = document.getElementById("guessesLeft-text");
+
+
+// Function to run when user presses a key
+document.onkeyup = function(event) {
+
+    // decrement guesses left variable by 1.
+    guessesLeft--;
+
+    // Determines which key was pressed and makes letter lowercase if necessary.
+    var guessedLetters = event.key.toLowerCase();
+
+    // Adds guessedLetter to array of guesses
+    guessedLetters.push(letters);
+    
+
+// Conditions to check for matches
+
+    if (guessedLetter === computerGuess) {
+        wins++; 
+        document.getElementById("wins-text").innerHTML = wins;
+
+    } else if (guessedLetter !== computerGuess) {
+        losses++;
+        document.getElementById("losses-text").innerHTML = losses;
+    // } else if (guessesLeft === 0) {
+    //     losses++;
+    reset();
+    }
+};
+
+
+// Displays the instructions, user's guesses, wins, and losses
+// directionsText.textContent = "Guess waht letter I'm thinking of";
+// winsText.textContent = "Wins: " + wins;
+// lossesText.textContent = "Losses: " + losses;
+// guessesLeftText.textContent = "Guesses Left: " + GuessesLeft;
+
+
+
+
+</script>
+
+</body>
+</html>
